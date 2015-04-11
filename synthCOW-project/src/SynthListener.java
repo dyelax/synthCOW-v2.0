@@ -6,7 +6,8 @@ import com.leapmotion.leap.GestureList;
 import com.leapmotion.leap.Listener;
 class  SynthListener extends Listener {
 
-	private int pitch, vol;
+	private int pitch;
+	private float vol;
 	private GestureHandler gh;
 
     public void onConnect(Controller controller) {
@@ -49,14 +50,21 @@ class  SynthListener extends Listener {
         	}
         }
         if(frame.hands().count() == 2){
-	        boolean closedHand = frame.hands().rightmost().grabStrength() > .5;
+	        boolean closedHand = frame.hands().rightmost().grabStrength() > .8;
+			if(closedHand)
+				vol = 0;
+			else {
+				vol = frame.hands().rightmost().fingers().frontmost().tipPosition().getY();
+				System.out.println(vol);
+			}
+			//System.out.println(closedHand);
 	        Finger f = frame.hands().leftmost().fingers().frontmost();
 	        int id = f.id();
 	        float noteY = frame.hands().leftmost().finger(id).tipPosition().getY();
 	        int i = (int)(noteY/ 60);
 	        if(pitch != i){
 	        	pitch = i;
-	        	//System.out.println(noteY + "     " + i);
+	        	System.out.println(noteY + "     " + i);
 	        	gh.changePitch(pitch);
 	        }
         }
