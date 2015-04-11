@@ -8,18 +8,11 @@ import javax.sound.midi.Track;
 public class Synth {
 	
 	private int pitch = 50;
-	private boolean isPlaying = false;
-	private int volume = 0;
-	private int instrument = 20;
-	
-	
-	public Synth(){
-		
-	}
 	
 	
 	
-	public Sequencer playNote(){
+	
+	public Sequencer playNote(int pitch, int instrument, int volume){
 		
         try {
 
@@ -67,24 +60,6 @@ public class Synth {
             e.printStackTrace();
         }
     }
-    
-    public void setIsPlaying(boolean isPlaying){
-    	this.isPlaying = isPlaying;
-    }
-    
-    public void setPitch(int pitch){
-    	this.pitch = pitch;
-    }
-    
-    public void setVolume(int volume){
-    	this.volume = volume;
-    }
-    
-    public void setInstruments(int instrument){
-    	this.instrument = instrument;
-    }
-    
-    
 	
 	
 	

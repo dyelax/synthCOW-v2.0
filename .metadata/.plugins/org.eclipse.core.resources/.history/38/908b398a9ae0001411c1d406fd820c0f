@@ -13,9 +13,7 @@ public class Synth {
 	private int instrument = 20;
 	
 	
-	public Synth(){
-		
-	}
+	
 	
 	
 	
