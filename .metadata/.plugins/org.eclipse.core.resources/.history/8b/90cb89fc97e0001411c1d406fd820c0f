@@ -1,6 +1,6 @@
 
 public class GestureHandler {
-	private Synth cow = new Synth();
+	private SynthCOW cow = new SynthCOW;
 	private int instrument;
 	private int numInstruments;
 	
