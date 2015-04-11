@@ -35,7 +35,7 @@ public class GestureHandler {
 	}
 	
 	public void changeVolume(int volume){
-		
+		//calculate volume values to pass to cow; pure math
 	}
 	
 	public void activateVolume(boolean on){
