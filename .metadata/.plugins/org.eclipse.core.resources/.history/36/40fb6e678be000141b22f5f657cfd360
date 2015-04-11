@@ -10,6 +10,11 @@ class Sample {
         // Have the sample listener receive events from the controller
         controller.addListener(listener);
 
+public class Sample {
+	public static void main(String[] args) {
+		Controller controller = new Controller();
+		//Alex was here
+		
         // Keep this process running until Enter is pressed
         System.out.println("Press Enter to quit...");
         try {

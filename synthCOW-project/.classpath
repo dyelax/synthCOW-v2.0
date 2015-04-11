@@ -2,9 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="C:/Users/Mark Bestavros/Downloads/Leap_Motion_SDK_Windows_2.2.4/LeapDeveloperKit_2.2.4+26750_win/LeapSDK/lib/LeapJava.jar">
+	<classpathentry kind="lib" path="/Users/alexkarle/Documents/synthCOW-v2.0/LeapSDK/lib/LeapJava.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Mark Bestavros/Downloads/Leap_Motion_SDK_Windows_2.2.4/LeapDeveloperKit_2.2.4+26750_win/LeapSDK/lib/x64"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/alexkarle/Documents/synthCOW-v2.0/LeapSDK/lib"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
