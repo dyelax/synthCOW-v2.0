@@ -8,7 +8,7 @@ class  SynthListener extends Listener {
 
 	private int pitch, vol;
 	private GestureHandler gh;
-	
+
     public void onConnect(Controller controller) {
         System.out.println("Connected");
         controller.enableGesture(Gesture.Type.TYPE_SWIPE);
@@ -28,7 +28,7 @@ class  SynthListener extends Listener {
         				//loop
         			}
         			break;
-        		case TYPE_SWIPE:		
+        		case TYPE_SWIPE:
         			if(frame.hands().count() == 1){
         				System.out.println("heyo, swipe right");
         				gh.changeInstrument(true);
@@ -39,13 +39,13 @@ class  SynthListener extends Listener {
         			if(frame.hands().count() == 2){
         				System.out.println("key tap");
         				//short vol burst
-        				
+
         			}
                     break;
         		default:
                     //for unrecognized gestures, do nothing
                     break;
-        		
+
         	}
         }
         if(frame.hands().count() == 2){
@@ -64,8 +64,8 @@ class  SynthListener extends Listener {
         	pitch = 0;
         	vol = 0;
         }
-       
+
     }
-    
+
 //    public int getPitch(){ return pitch;}
 }
