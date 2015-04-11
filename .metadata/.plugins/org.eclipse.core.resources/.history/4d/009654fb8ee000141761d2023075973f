@@ -6,12 +6,10 @@ import com.leapmotion.leap.Listener;
 class  SynthListener extends Listener {
 
 	private int pitch;
-	private GestureHandler gh;
 	
     public void onConnect(Controller controller) {
         System.out.println("Connected");
         controller.enableGesture(Gesture.Type.TYPE_SWIPE);
-        gh = new GestureHandler();
     }
 
     public void onFrame(Controller controller) {
@@ -23,11 +21,10 @@ class  SynthListener extends Listener {
         if(pitch != i){
         	pitch = i;
         	System.out.println(noteY + "     " + i);
-        	gh.changePitch(pitch);
         }
        
        
     }
     
-//    public int getPitch(){ return pitch;}
+    public int getPitch(){ return pitch;}
 }
