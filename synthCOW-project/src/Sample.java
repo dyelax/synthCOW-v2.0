@@ -4,6 +4,7 @@ import com.leapmotion.leap.*;
 public class Sample {
 	public static void main(String[] args) {
 		Controller controller = new Controller();
+		//Alex was here
 		
         // Keep this process running until Enter is pressed
         System.out.println("Press Enter to quit...");
