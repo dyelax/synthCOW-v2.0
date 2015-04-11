@@ -10,16 +10,12 @@ public class Synth {
 	private int pitch = 50;
 	private boolean isPlaying = false;
 	private int volume = 0;
-	private int instrument = 20;
-	
-	
-	public Synth(){
-		
-	}
+	private int instrument = 0;
 	
 	
 	
-	public Sequencer playNote(){
+	
+	public Sequencer playNote(int instrument){
 		
         try {
 
@@ -78,10 +74,6 @@ public class Synth {
     
     public void setVolume(int volume){
     	this.volume = volume;
-    }
-    
-    public void setInstruments(int instrument){
-    	this.instrument = instrument;
     }
     
     

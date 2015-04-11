@@ -13,10 +13,6 @@ public class Synth {
 	private int instrument = 20;
 	
 	
-	public Synth(){
-		
-	}
-	
 	
 	
 	public Sequencer playNote(){
@@ -80,9 +76,7 @@ public class Synth {
     	this.volume = volume;
     }
     
-    public void setInstruments(int instrument){
-    	this.instrument = instrument;
-    }
+    public void setInstruments(int instrument)
     
     
 	
