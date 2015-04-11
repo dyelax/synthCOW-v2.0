@@ -4,7 +4,7 @@ import com.leapmotion.leap.*;
 class Sample {
     public static void main(String[] args) {
         // Create a sample listener and controller
-        SynthListener listener = new SynthListener();
+        SampleListener listener = new SynthListener();
         Controller controller = new Controller();
 
         // Have the sample listener receive events from the controller
