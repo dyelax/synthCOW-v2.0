@@ -21,10 +21,7 @@ class  SynthListener extends Listener {
         for(Gesture g: gList){
         	switch(g.type()){
         		case TYPE_SWIPE:
-        			System.out.println("heyo, swipe right");
-        			gh.changeInstrument(true);
-        			System.out.println("");
-        			break;
+        			System.out.println("heyo, swipe right")
         	}
         }
         Finger f = frame.hands().leftmost().fingers().frontmost();
@@ -33,7 +30,7 @@ class  SynthListener extends Listener {
         int i = (int)(noteY/ 60);
         if(pitch != i){
         	pitch = i;
-        	//System.out.println(noteY + "     " + i);
+        	System.out.println(noteY + "     " + i);
         	gh.changePitch(pitch);
         }
        

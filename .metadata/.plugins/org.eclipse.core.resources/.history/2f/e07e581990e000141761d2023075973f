@@ -2,7 +2,6 @@ import com.leapmotion.leap.Controller;
 import com.leapmotion.leap.Finger;
 import com.leapmotion.leap.Frame;
 import com.leapmotion.leap.Gesture;
-import com.leapmotion.leap.GestureList;
 import com.leapmotion.leap.Listener;
 class  SynthListener extends Listener {
 
@@ -17,23 +16,13 @@ class  SynthListener extends Listener {
 
     public void onFrame(Controller controller) {
         Frame frame = controller.frame();
-        GestureList gList = frame.gestures();
-        for(Gesture g: gList){
-        	switch(g.type()){
-        		case TYPE_SWIPE:
-        			System.out.println("heyo, swipe right");
-        			gh.changeInstrument(true);
-        			System.out.println("");
-        			break;
-        	}
-        }
         Finger f = frame.hands().leftmost().fingers().frontmost();
         int id = f.id();
         float noteY = frame.hands().leftmost().finger(id).tipPosition().getY();
         int i = (int)(noteY/ 60);
         if(pitch != i){
         	pitch = i;
-        	//System.out.println(noteY + "     " + i);
+        	System.out.println(noteY + "     " + i);
         	gh.changePitch(pitch);
         }
        

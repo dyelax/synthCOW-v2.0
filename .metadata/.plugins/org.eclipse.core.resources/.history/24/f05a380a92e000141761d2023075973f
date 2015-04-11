@@ -22,7 +22,7 @@ class  SynthListener extends Listener {
         	switch(g.type()){
         		case TYPE_SWIPE:
         			System.out.println("heyo, swipe right");
-        			gh.changeInstrument(true);
+        			gh.changeInstrument();
         			System.out.println("");
         			break;
         	}
