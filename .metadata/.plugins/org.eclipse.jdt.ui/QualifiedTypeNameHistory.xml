@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.sound.midi.Sequencer"/>
-<fullyQualifiedTypeName name="javax.sound.midi.Sequence"/>
-<fullyQualifiedTypeName name="javax.sound.midi.Track"/>
-<fullyQualifiedTypeName name="javax.sound.midi.ShortMessage"/>
-<fullyQualifiedTypeName name="javax.sound.midi.MidiEvent"/>
-<fullyQualifiedTypeName name="javax.sound.midi.MidiSystem"/>
+<fullyQualifiedTypeName name="com.leapmotion.leap.GestureList"/>
 </qualifiedTypeNameHistroy>
