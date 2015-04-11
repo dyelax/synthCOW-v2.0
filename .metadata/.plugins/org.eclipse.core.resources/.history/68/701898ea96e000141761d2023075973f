@@ -13,7 +13,6 @@ class  SynthListener extends Listener {
         System.out.println("Connected");
         controller.enableGesture(Gesture.Type.TYPE_SWIPE);
         controller.enableGesture(Gesture.Type.TYPE_SCREEN_TAP);
-        controller.enableGesture(Gesture.Type.TYPE_KEY_TAP);
         gh = new GestureHandler();
     }
 
@@ -25,7 +24,8 @@ class  SynthListener extends Listener {
         		case TYPE_SCREEN_TAP:
         			if(frame.hands().count() == 2){
         				System.out.println("screentap");
-        				//loop
+        				gh.changeInstrument(true);
+        				System.out.println("changed inst");
         			}
         			break;
         		case TYPE_SWIPE:		

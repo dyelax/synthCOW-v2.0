@@ -13,7 +13,6 @@ class  SynthListener extends Listener {
         System.out.println("Connected");
         controller.enableGesture(Gesture.Type.TYPE_SWIPE);
         controller.enableGesture(Gesture.Type.TYPE_SCREEN_TAP);
-        controller.enableGesture(Gesture.Type.TYPE_KEY_TAP);
         gh = new GestureHandler();
     }
 
