@@ -16,20 +16,19 @@ public class GestureHandler {
 	}
 	
 	public void changePitch(int pitch){
-		if(pitch < 0 || pitch > 4){
 			System.out.println("Pitch is out of bounds!");
 			return;
 		}
 		
-		if(pitch == 0){
+		if(pitch == 1){
 			//cow.playNote*****(a);
-		}else if(pitch == 1){
-			//cow.playNote*****(b);
 		}else if(pitch == 2){
-			
+			//cow.playNote*****(b);
 		}else if(pitch == 3){
 			
 		}else if(pitch == 4){
+			
+		}else if(pitch == 5){
 			
 		}
 	}
