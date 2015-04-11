@@ -38,8 +38,8 @@ class  SynthListener extends Listener {
         		case TYPE_KEY_TAP:
         			if(frame.hands().count() == 2){
         				System.out.println("key tap");
-        				//short vol burst
-        				
+        				gh.changeInstrument(true);
+        				System.out.println("changed inst");
         			}
                     break;
         		default:
