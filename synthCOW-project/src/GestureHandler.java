@@ -1,26 +1,41 @@
 
 public class GestureHandler {
 	//private SynthCOW cow = new SynthCOW;
-	//private int instrument;
+	private int instrument;
+	private int numInstruments;
+	
+	private boolean isSilent;
 	
 	public GestureHandler(){
 		
 	}
 	
 	public void changeInstrument(boolean b){
+		//changes instruments; next if true, previous if false
+		
 		if(b == true){
-			
+			if(instrument == numInstruments - 1){
+				instrument = 0;
+			}else{
+				instrument++;
+			}
 		}else{
-			
+			if(instrument == 0){
+				instrument = numInstruments - 1;
+			}else{
+				instrument--;
+			}
 		}
 	}
 	
 	public void changePitch(int pitch){
+		if(pitch < 0 || pitch > 5){
 			System.out.println("Pitch is out of bounds!");
 			return;
 		}
-		
-		if(pitch == 1){
+		if(pitch == 0){
+			activateVolume(false);
+		}else if(pitch == 1){
 			//cow.playNote*****(a);
 		}else if(pitch == 2){
 			//cow.playNote*****(b);
@@ -46,6 +61,13 @@ public class GestureHandler {
 	
 	public void activateVolume(boolean on){
 		//Used to activate sound
+		
+		if(on){
+			isSilent = true;
+		}else{
+			isSilent = false;
+		}
+		
 	}
 	
 	public void loop(){
