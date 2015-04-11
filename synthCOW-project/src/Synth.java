@@ -1,0 +1,66 @@
+import javax.sound.midi.MidiEvent;
+import javax.sound.midi.MidiSystem;
+import javax.sound.midi.Sequence;
+import javax.sound.midi.Sequencer;
+import javax.sound.midi.ShortMessage;
+import javax.sound.midi.Track;
+
+public class Synth {
+
+	
+	
+	
+	public Sequencer playNote(int pitch, int instrument, int volume){
+		
+        try {
+
+            Sequencer sequencer = MidiSystem.getSequencer();
+            sequencer.open();
+            Sequence sequence = new Sequence(Sequence.PPQ,4);
+            Track track = sequence.createTrack();
+
+            MidiEvent event = null;
+
+            ShortMessage first = new ShortMessage();
+            first.setMessage(192,1,instrument,0);
+            MidiEvent changeInstrument = new MidiEvent(first, 1);
+            track.add(changeInstrument);
+
+            ShortMessage a = new ShortMessage();
+            a.setMessage(144,1,pitch,100);
+            MidiEvent noteOn = new MidiEvent(a, 1);
+            track.add(noteOn);
+
+            ShortMessage b = new ShortMessage();
+            b.setMessage(128,1,pitch,100);
+            MidiEvent noteOff = new MidiEvent(b, 16);
+            track.add(noteOff);
+
+            sequencer.setSequence(sequence);
+            sequencer.start();
+
+            return sequencer;
+
+        } catch (Exception ex) {
+        	ex.printStackTrace();
+        	return null;
+        }
+    }
+	
+	public void stopNote(Sequencer sequencer){
+        sequencer.stop();
+    }
+
+    public void delay(long time){
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	
+	
+	
+	
+}
