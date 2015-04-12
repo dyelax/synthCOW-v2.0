@@ -50,7 +50,7 @@ class  SynthListener extends Listener {
         	}
         }
         if(frame.hands().count() == 2){
-	        boolean closedHand = frame.hands().rightmost().grabStrength() > .5;
+	        boolean closedHand = frame.hands().rightmost().grabStrength() > .6;
 			if(closedHand)
 				vol = 0;
 			else {
