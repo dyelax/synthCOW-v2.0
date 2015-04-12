@@ -4,8 +4,6 @@ public class GestureHandler {
 	private int instrument;
 	private int numInstruments;
 	
-	private boolean isSilent;
-	
 	public GestureHandler(){
 		
 	}
@@ -69,6 +67,10 @@ public class GestureHandler {
 		//Used to activate sound
 		
 		cow.setIsPlaying(on);
+
+		if(cow.getIsPlaying()){
+			cow.stopNote(cow.getSequencer());
+		}
 		
 	}
 	
