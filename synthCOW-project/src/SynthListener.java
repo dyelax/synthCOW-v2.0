@@ -112,7 +112,7 @@ class  SynthListener extends Listener {
 //		m.setHandPos(leftX, leftY, rightX, rightY);
     }
 
-	public int getSwipeNum(){return swipeNum;}
+	public int getSwipeNum(){int swipe = swipeNum; swipeNum = 0; return swipe;}
 //	public double getleftX(){return leftX;}
 //	public double getleftY(){return leftY;}
 //	public double getrightX(){return rightX;}
