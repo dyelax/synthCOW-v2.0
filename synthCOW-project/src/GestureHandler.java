@@ -40,15 +40,15 @@ public class GestureHandler {
 
 		if(pitch == 1){
 
-			//cow.playNote*
+			cow.setPitch(60);
 		}else if(pitch == 2){
-			//cow.playNote*****(b);
+			cow.setPitch(63);
 		}else if(pitch == 3){
-			
+			cow.setPitch(65);
 		}else if(pitch == 4){
-			
+			cow.setPitch(67);
 		}else if(pitch == 5){
-			
+			cow.setPitch(70);
 		}
 	}
 	
