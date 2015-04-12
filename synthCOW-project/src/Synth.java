@@ -9,7 +9,7 @@ public class Synth {
 	
 	private int pitch = 60;
 	private boolean isPlaying = false;
-	private double volume = 0;
+	private int volume = 0;
 	private int instrument = 20;
 	
 	
@@ -76,7 +76,7 @@ public class Synth {
     	this.pitch = pitch;
     }
     
-    public void setVolume(double volume){
+    public void setVolume(int volume){
     	this.volume = volume;
     }
     
