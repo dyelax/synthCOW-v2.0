@@ -44,12 +44,12 @@ class  SynthListener extends Listener {
 							SwipeGesture swipe = new SwipeGesture(g);
 							Vector swipeDir= swipe.direction();
 							if(swipeDir.getX() > 0) {
-								gh.changeInstrument(true);
+								//gh.changeInstrument(true);
 								//m.changeInstrument(true);
 								swipeNum = -1;
 							}
 							else{
-								gh.changeInstrument(false);
+								//gh.changeInstrument(false);
 								swipeNum = 1;
 								//m.changeInstrument(false);
 							}
@@ -122,6 +122,7 @@ class  SynthListener extends Listener {
     }
 
 	public int getSwipeNum(){int swipe = swipeNum; swipeNum = 0; return swipe;}
+	public GestureHandler getGh(){return gh;}
 //	public double getleftX(){return leftX;}
 //	public double getleftY(){return leftY;}
 //	public double getrightX(){return rightX;}
