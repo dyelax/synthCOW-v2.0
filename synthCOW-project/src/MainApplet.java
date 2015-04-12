@@ -111,10 +111,13 @@ public class MainApplet extends Applet implements ActionListener{
         //
         //draw background
         //
-        setBackground(Color.blue);
+        double pitch = (1000-leftY)/600;
+        double volume = (1000-rightY)*0.5/600;
+
+        Color bgColor = Color.getHSBColor((float)pitch, 1f, (float)volume);
+        setBackground(bgColor);
 
         //note lines
-        g2.setColor(new Color(0f, 0f, 0f, 0.5f));
 
         Rectangle2D line1 = new Rectangle2D.Double(40, 200, 1000, 120);
         Rectangle2D line3 = new Rectangle2D.Double(40, 440, 1000, 120);
@@ -124,7 +127,7 @@ public class MainApplet extends Applet implements ActionListener{
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
         float[] fractions = {0f, 0.8f};
-        Color[] colors = {new Color(0f, 0f, 0f, 0.4f), new Color(0f, 0f, 0f, 0f)};
+        Color[] colors = {new Color(1f, 1f, 1f, 0.4f), new Color(1f, 1f, 1f, 0f)};
         LinearGradientPaint paint = new LinearGradientPaint(40, 0, 1000, 0, fractions, colors);
         g2.setPaint(paint);
 
