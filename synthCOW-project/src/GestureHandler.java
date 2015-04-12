@@ -75,7 +75,7 @@ public class GestureHandler {
 		if(clockYes != on) {
 			cow.setIsPlaying(on);
 
-			if (cow.getIsPlaying()) {
+			if (!cow.getIsPlaying()) {
 				cow.stopNote(sequencer);
 			} else {
 				sequencer = cow.playNote();
