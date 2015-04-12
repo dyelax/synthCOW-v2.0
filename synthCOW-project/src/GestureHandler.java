@@ -1,11 +1,14 @@
+import javax.sound.midi.Sequencer;
 
 public class GestureHandler {
 	private Synth cow = new Synth();
 	private int instrument;
 	private int numInstruments;
+	private boolean clockYes;
+	private Sequencer sequencer;
 	
 	public GestureHandler(){
-		
+
 	}
 	
 	public void changeInstrument(boolean b){
@@ -65,11 +68,16 @@ public class GestureHandler {
 	
 	public void activateVolume(boolean on){
 		//Used to activate sound
-		
-		cow.setIsPlaying(on);
 
-		if(cow.getIsPlaying()){
-			cow.stopNote(cow.getSequencer());
+		if(clockYes != on) {
+			cow.setIsPlaying(on);
+
+			if (cow.getIsPlaying()) {
+				cow.stopNote(sequencer);
+			} else {
+				sequencer = cow.playNote();
+			}
+			clockYes = on;
 		}
 		
 	}
