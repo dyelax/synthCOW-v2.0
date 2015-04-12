@@ -17,6 +17,10 @@ public class MainApplet extends Applet implements ActionListener{
 
     private int circleDiameter;
 
+    private int instrumentNum;
+
+    private long lastSwipeTimeMillis;
+
      public void init(){
          setSize(1080, 840);
 
@@ -31,6 +35,10 @@ public class MainApplet extends Applet implements ActionListener{
 
          circleDiameter = 100;
 
+         instrumentNum = 0;
+
+         lastSwipeTimeMillis = 0;
+
          //setup leapmotion
          // Create a sample listener and controller
          listener = new SynthListener();
@@ -38,16 +46,6 @@ public class MainApplet extends Applet implements ActionListener{
 
          // Have the sample listener receive events from the controller
          controller.addListener(listener);
-
-         // Keep this process running until Enter is pressed
-//         System.out.println("Press Enter to quit...");
-//         try {
-//             System.in.read();
-//         } catch (IOException e) {
-//             e.printStackTrace();
-//         }
-         // Remove the sample listener when done
-//         controller.removeListener(listener);
      }
 
     public void actionPerformed(ActionEvent e) {
@@ -106,7 +104,27 @@ public class MainApplet extends Applet implements ActionListener{
     public void paint(Graphics g){
         Graphics2D g2 = (Graphics2D)g;
 
-//        System.out.println("REPAINT");
+//        switch (listener.getSwipeNum()){
+//            case -1:
+//                instrumentNum--;
+//                break;
+//            case 0:
+//
+//                break;
+//            case 1:
+//                instrumentNum++;
+//                break;
+//        }
+
+        long curTime = System.currentTimeMillis();
+        if (curTime - lastSwipeTimeMillis >= 1500){
+            instrumentNum += listener.getSwipeNum();
+            lastSwipeTimeMillis = curTime;
+        }
+
+
+        g2.setColor(Color.white);
+        g2.drawString(""+instrumentNum, 10, 10);
 
         //
         //draw background
@@ -143,7 +161,6 @@ public class MainApplet extends Applet implements ActionListener{
 //        g2.fillRect(40, 680, 1000, 120);
 
         //brackets
-        g2.setColor(Color.white);
         g2.setStroke(new BasicStroke(1));
 
         g2.drawLine(40, 200, 40, 800);
