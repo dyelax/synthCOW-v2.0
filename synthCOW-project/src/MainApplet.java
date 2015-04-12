@@ -71,7 +71,7 @@ public class MainApplet extends Applet implements ActionListener{
                 xPos = 1040;
             }
 
-            double yPos = 200 + (600 - 2*ry + 180);//invert y coords from leap and give 100px margin at top @2x
+            double yPos = 200 + (600 - 2*ry + 60);//invert y coords from leap and give 100px margin at top @2x
             if (yPos > 800){
                 yPos = 800;
             }else if (yPos < 200){
@@ -88,7 +88,7 @@ public class MainApplet extends Applet implements ActionListener{
                 xPos = 1040;
             }
 
-            yPos = 200 + (600 - 2*ly + 180);//invert y coords from leap and give 100px margin at top @2x
+            yPos = 200 + (600 - 2*ly + 60);//invert y coords from leap and give 100px margin at top @2x
             if (yPos > 800){
                 yPos = 800;
             }else if (yPos < 200) {
