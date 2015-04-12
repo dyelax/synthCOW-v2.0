@@ -15,7 +15,7 @@ public class Synth {
 
 	}
 
-    public Synthesizer playBeat(){
+    public Synthesizer playBeat(int length){
 
 
         try {
@@ -23,8 +23,10 @@ public class Synth {
             synth.open();
             MidiChannel[] channels = synth.getChannels();
 
-            channels[10].programChange(instrument);
-            channels[10].noteOn( pitch, volume );
+            channels[9].programChange(instrument);
+            channels[9].noteOn( pitch, volume );
+            this.delay(length);
+            channels[9].noteOff( pitch);
             return synth;
         }
         catch (Exception e) {

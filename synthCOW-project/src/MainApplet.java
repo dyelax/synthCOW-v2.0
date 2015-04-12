@@ -29,6 +29,22 @@ public class MainApplet extends Applet implements ActionListener{
     private Image leftArrow, rightArrow;
 
      public void init(){
+
+
+         Runnable beat = new Runnable() {
+             @Override
+             public void run() {
+                 BeatMachine mach = new BeatMachine();
+                 //while(true) {
+                     mach.beat1();
+                 //}
+             }
+         };
+
+         Thread beatThread = new Thread(beat);
+         beatThread.start();
+
+
          setSize(1080, 840);
 
         instrumentImages = new Image[5];
