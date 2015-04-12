@@ -22,6 +22,8 @@ public class MainApplet extends Applet implements ActionListener{
 
     private long lastSwipeTimeMillis;
 
+    
+
     private MediaTracker mt;
     private Image[] instrumentImages;
     private Image leftArrow, rightArrow;
@@ -159,6 +161,13 @@ public class MainApplet extends Applet implements ActionListener{
         //draw instrument image/handle swipes
         long curTime = System.currentTimeMillis();
         if (curTime - lastSwipeTimeMillis >= 1500){
+            int change = listener.getSwipeNum();
+            if (change == -1){
+                listener.getGh().changeInstrument(false);
+            }else if (change == 1){
+                listener.getGh().changeInstrument(true);
+            }
+
             instrumentNum += listener.getSwipeNum();
 
             if (instrumentNum > 4){
