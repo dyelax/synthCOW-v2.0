@@ -103,9 +103,9 @@ class  SynthListener extends Listener {
 
 		gh.changeVolume(vol);
 		//System.out.println(frame.hands().leftmost().fingers().frontmost().tipPosition().getX());
-		m.setHandsOnScreen(onScreen);
-
-		m.setHandPos(leftX, leftY, rightX, rightY);
+//		m.setHandsOnScreen(onScreen);
+//
+//		m.setHandPos(leftX, leftY, rightX, rightY);
     }
 
 //	public double getleftX(){return leftX;}
