@@ -9,7 +9,7 @@ public class Synth {
 	
 	private int pitch = 60;
 	private boolean isPlaying = false;
-	private int volume = 0;
+	private double volume = 0;
 	private int instrument = 20;
 	
 	
@@ -36,12 +36,12 @@ public class Synth {
             track.add(changeInstrument);
 
             ShortMessage a = new ShortMessage();
-            a.setMessage(144,1,pitch,100);
+            a.setMessage(144,1,pitch,volume);
             MidiEvent noteOn = new MidiEvent(a, 1);
             track.add(noteOn);
 
             ShortMessage b = new ShortMessage();
-            b.setMessage(128,1,pitch,100);
+            b.setMessage(128,1,pitch,volume);
             MidiEvent noteOff = new MidiEvent(b, 16);
             track.add(noteOff);
 
@@ -76,7 +76,7 @@ public class Synth {
     	this.pitch = pitch;
     }
     
-    public void setVolume(int volume){
+    public void setVolume(double volume){
     	this.volume = volume;
     }
     
