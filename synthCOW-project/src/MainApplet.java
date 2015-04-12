@@ -24,6 +24,7 @@ public class MainApplet extends Applet implements ActionListener{
 
     private MediaTracker mt;
     private Image[] instrumentImages;
+    private Image leftArrow, rightArrow;
 
      public void init(){
          setSize(1080, 840);
@@ -40,16 +41,22 @@ public class MainApplet extends Applet implements ActionListener{
 
          // Here we load the image.
          // Only Gif and JPG are allowed. Transparant gif also.
-         instrumentImages[0] = getImage(base,"bass.gif");
-         instrumentImages[1] = getImage(base,"keyboard.gif");
-         instrumentImages[2] = getImage(base,"strings.gif");
-         instrumentImages[3] = getImage(base,"horns.gif");
-         instrumentImages[4] = getImage(base,"synth.gif");
+
+         instrumentImages[0] = Toolkit.getDefaultToolkit().getImage("/Users/Matt/Programming/Personal Projects/synthCOW-v2.0/synthCOW-project/src/images/bass.png");
+         instrumentImages[1] = Toolkit.getDefaultToolkit().getImage("/Users/Matt/Programming/Personal Projects/synthCOW-v2.0/synthCOW-project/src/images/keyboard.png");
+         instrumentImages[2] = Toolkit.getDefaultToolkit().getImage("/Users/Matt/Programming/Personal Projects/synthCOW-v2.0/synthCOW-project/src/images/strings.png");
+         instrumentImages[3] = Toolkit.getDefaultToolkit().getImage("/Users/Matt/Programming/Personal Projects/synthCOW-v2.0/synthCOW-project/src/images/horns.png");
+         instrumentImages[4] = Toolkit.getDefaultToolkit().getImage("/Users/Matt/Programming/Personal Projects/synthCOW-v2.0/synthCOW-project/src/images/cow.png");
+         leftArrow = Toolkit.getDefaultToolkit().getImage("/Users/Matt/Programming/Personal Projects/synthCOW-v2.0/synthCOW-project/src/images/leftArrow.png");
+         rightArrow = Toolkit.getDefaultToolkit().getImage("/Users/Matt/Programming/Personal Projects/synthCOW-v2.0/synthCOW-project/src/images/rightArrow.png");
 
          // tell the MediaTracker to kep an eye on this image, and give it ID 1;
          for (int i = 0; i < instrumentImages.length; i++) {
              mt.addImage(instrumentImages[i], i);
+             System.out.println(instrumentImages[i].getWidth(null) + " " + instrumentImages[i].getHeight(null));
          }
+         mt.addImage(leftArrow, 98);
+         mt.addImage(rightArrow, 99);
 
          // now tell the mediaTracker to stop the applet execution
          // (in this example don't paint) until the images are fully loaded.
@@ -163,31 +170,13 @@ public class MainApplet extends Applet implements ActionListener{
             lastSwipeTimeMillis = curTime;
         }
 
-//        Image instrumentImage;
-//        switch (instrumentNum){
-//            case 0:
-//                instrumentImage = getImage(getCodeBase(), "bass.png");
-//                break;
-//            case 1:
-//                instrumentImage = getImage(getCodeBase(), "keyboard.png");
-//                break;
-//            case 2:
-//                instrumentImage = getImage(getCodeBase(), "strings.png");
-//                break;
-//            case 3:
-//                instrumentImage = getImage(getCodeBase(), "synth.png");
-//                break;
-//            case 4:
-//                instrumentImage = getImage(getCodeBase(), "horns.png");
-//                break;
-//            default:
-//                instrumentImage = getImage(getCodeBase(), "keyboard.png");
-//                break;
-//        }
-        g2.drawImage(instrumentImages[0], 500, 500, 200, 200, this);
+//        System.out.println(instrumentImages[0].getWidth(null) + " " + instrumentImages[0].getHeight(null));
+        g2.drawImage(instrumentImages[instrumentNum], 500, 60, 80, 80, this);
+        g2.drawImage(leftArrow, 434, 80, 36, 40, this);
+        g2.drawImage(rightArrow, 610, 80, 36, 40, this);
 
         g2.setColor(Color.white);
-        g2.drawString(""+instrumentNum, 10, 20);
+//        g2.drawString(""+instrumentNum, 10, 20);
 
         //note lines
 
