@@ -59,7 +59,9 @@ public class Synth {
     }
 	
 	public void stopNote(Sequencer sequencer){
-        sequencer.stop();
+        if(sequencer != null) {
+            sequencer.stop();
+        }
     }
 
     public void delay(long time){

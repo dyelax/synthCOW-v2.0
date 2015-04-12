@@ -8,7 +8,8 @@ public class GestureHandler {
 	private Sequencer sequencer;
 	
 	public GestureHandler(){
-
+		cow = new Synth();
+		sequencer = null;
 	}
 	
 	public void changeInstrument(boolean b){
