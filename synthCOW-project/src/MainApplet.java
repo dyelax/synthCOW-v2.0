@@ -1,6 +1,7 @@
 import com.leapmotion.leap.*;
 import java.applet.*;
 import java.awt.*;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
@@ -104,28 +105,6 @@ public class MainApplet extends Applet implements ActionListener{
     public void paint(Graphics g){
         Graphics2D g2 = (Graphics2D)g;
 
-//        switch (listener.getSwipeNum()){
-//            case -1:
-//                instrumentNum--;
-//                break;
-//            case 0:
-//
-//                break;
-//            case 1:
-//                instrumentNum++;
-//                break;
-//        }
-
-        long curTime = System.currentTimeMillis();
-        if (curTime - lastSwipeTimeMillis >= 1500){
-            instrumentNum += listener.getSwipeNum();
-            lastSwipeTimeMillis = curTime;
-        }
-
-
-        g2.setColor(Color.white);
-        g2.drawString(""+instrumentNum, 10, 10);
-
         //
         //draw background
         //
@@ -134,6 +113,42 @@ public class MainApplet extends Applet implements ActionListener{
 
         Color bgColor = Color.getHSBColor((float)pitch, 1f, (float)volume);
         setBackground(bgColor);
+
+        //draw instrument image/handle swipes
+        long curTime = System.currentTimeMillis();
+        if (curTime - lastSwipeTimeMillis >= 1500){
+            instrumentNum += listener.getSwipeNum();
+            instrumentNum = instrumentNum % 5;
+            lastSwipeTimeMillis = curTime;
+        }
+
+        Image instrumentImage;
+        switch (instrumentNum){
+            case 0:
+                instrumentImage = getImage(getCodeBase(), "bass.png");
+                break;
+            case 1:
+                instrumentImage = getImage(getCodeBase(), "keyboard.png");
+                break;
+            case 2:
+                instrumentImage = getImage(getCodeBase(), "strings.png");
+                break;
+            case 3:
+                instrumentImage = getImage(getCodeBase(), "synth.png");
+                break;
+            case 4:
+                instrumentImage = getImage(getCodeBase(), "horns.png");
+                break;
+            default:
+                instrumentImage = getImage(getCodeBase(), "keyboard.png");
+                break;
+        }
+
+        g2.drawImage(instrumentImage, 200, 200, this);
+
+        g2.setColor(Color.white);
+        g2.drawString(""+instrumentNum, 10, 20);
+
 
         //note lines
 
@@ -161,7 +176,7 @@ public class MainApplet extends Applet implements ActionListener{
 //        g2.fillRect(40, 680, 1000, 120);
 
         //brackets
-        g2.setStroke(new BasicStroke(1));
+        g2.setStroke(new BasicStroke(2));
 
         g2.drawLine(40, 200, 40, 800);
         g2.drawLine(40, 200, 48, 200);
