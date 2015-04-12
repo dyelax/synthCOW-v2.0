@@ -17,6 +17,10 @@ class  SynthListener extends Listener {
         controller.enableGesture(Gesture.Type.TYPE_KEY_TAP);
         gh = new GestureHandler();
 		m = new MainApplet();
+		leftY = 0;
+		leftX = 0;
+		rightY = 0;
+		rightX = 0;
     }
 
     public void onFrame(Controller controller) {
@@ -71,7 +75,7 @@ class  SynthListener extends Listener {
 				vol = 0;
 
 			else
-				vol = leftY;
+				vol = rightY;
 
 	        Finger f = frame.hands().leftmost().fingers().frontmost();
 
@@ -91,9 +95,27 @@ class  SynthListener extends Listener {
         }
 
 		gh.changeVolume(vol);
-		m.setHandsOnScreen(onScreen);
-		m.setLeftHandPos(leftX,leftY);
-		m.setRightHandPos(rightX,rightX);
+//		m.setHandsOnScreen(onScreen);
+//		Runnable callApplet1 = new Runnable() {
+//			@Override
+//			public void run() {
+//				try{m.setLeftHandPos(leftX, leftY);}catch(Exception e){e.printStackTrace(); Thread.currentThread().interrupt();}
+//			}
+//		};
+//		Runnable callApplet2 = new Runnable() {
+//			@Override
+//			public void run() {
+//				try{m.setRightHandPos(rightX, rightY);}catch(Exception e){e.printStackTrace(); Thread.currentThread().interrupt();}
+//			}
+//		};
+//		Thread t1 = new Thread(callApplet1);
+//		t1.start();
+//
+//		Thread t2 = new Thread(callApplet1);
+//		t2.start();
+
+//		System.out.println("heyL: (" + leftX + "," + leftY + ") R: (" + rightX + "," + rightY + ")  on " + onScreen + " pitch: " + pitch + " closed " + closedHand);
+
 
     }
 
