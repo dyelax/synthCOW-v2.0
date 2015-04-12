@@ -94,8 +94,6 @@ public class Synth {
     	this.instrument = instrument;
     }
 
-    public Sequencer getSequencer(){ return sequencer; }
-    
     
 	
 	
