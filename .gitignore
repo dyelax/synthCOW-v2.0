@@ -1,8 +1,5 @@
 *.class
 *.xml
 .classpath
-
-
-synthCOW-project/.idea/workspace.xml
-
-*.xml
+*~
+*#
