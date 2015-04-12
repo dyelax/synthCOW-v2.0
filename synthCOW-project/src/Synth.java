@@ -7,14 +7,17 @@ import javax.sound.midi.Track;
 
 public class Synth {
 	
-	private int pitch = 60;
-	private boolean isPlaying = false;
-	private int volume = 0;
-	private int instrument = 20;
+	private int pitch;
+	private boolean isPlaying;
+	private int volume;
+	private int instrument;
 	
 	
 	public Synth(){
-		
+		pitch = 60;
+        isPlaying = false;
+        volume = 0;
+        instrument = 20;
 	}
 	
 	
@@ -67,20 +70,28 @@ public class Synth {
             e.printStackTrace();
         }
     }
+
+    public boolean getIsPlaying(){ return isPlaying; }
     
     public void setIsPlaying(boolean isPlaying){
     	this.isPlaying = isPlaying;
     }
-    
+
+    public int getPitch(){ return pitch; }
+
     public void setPitch(int pitch){
     	this.pitch = pitch;
     }
-    
+
+    public int getVolume(){ return volume; }
+
     public void setVolume(int volume){
     	this.volume = volume;
     }
+
+    public int getInstrument(){ return instrument; }
     
-    public void setInstruments(int instrument){
+    public void setInstrument(int instrument){
     	this.instrument = instrument;
     }
     

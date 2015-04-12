@@ -23,7 +23,7 @@ public class GestureHandler {
 			}
 		}
 
-		cow.setInstruments(instrument);
+		cow.setInstrument(instrument);
 	}
 	
 	public void changePitch(int pitch){
