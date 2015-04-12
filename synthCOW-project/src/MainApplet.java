@@ -1,11 +1,14 @@
 import com.leapmotion.leap.Controller;
 import java.applet.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.IOException;
+import javax.swing.*;
 
-public class MainApplet extends Applet{
+public class MainApplet extends Applet implements ActionListener{
     private SynthListener listener;
     private Controller controller;
 
@@ -18,6 +21,9 @@ public class MainApplet extends Applet{
 
      public void init(){
          setSize(1080, 840);
+
+         Timer t = new Timer(100, this);
+         t.start();
 
 //         leftHand = new Point2D.Double(10, 10);
 //         rightHand = new Point2D.Double(200, 200);
@@ -45,6 +51,9 @@ public class MainApplet extends Applet{
 //         controller.removeListener(listener);
      }
 
+    public void actionPerformed(ActionEvent e) {
+        repaint();
+    }
     public void paint(Graphics g){
         Graphics2D g2 = (Graphics2D)g;
 
@@ -135,7 +144,9 @@ public class MainApplet extends Applet{
 //    }
 
     public void setHandPos(double lx, double ly, double rx, double ry){
-        System.out.println("R: (" + rx + ", " + ry + ")");
+//        System.out.println("R: (" + rx + ", " + ry + ")");
+
+        repaint();
 
         double xPos = 2*rx + 500 + 40;//x from leap goes -250 to 250, plus 20px buffer on side @2x
         if (xPos < 40){
@@ -154,7 +165,7 @@ public class MainApplet extends Applet{
         rightX = xPos;
         rightY = yPos;
 
-        System.out.println("L: (" + lx + ", " + ly + ")");
+//        System.out.println("L: (" + lx + ", " + ly + ")");
 
         xPos = 2*lx + 500 + 40;//x from leap goes -250 to 250, plus 20px buffer on side @2x
         if (xPos < 40){
@@ -173,8 +184,14 @@ public class MainApplet extends Applet{
         leftX = xPos;
         leftY = yPos;
 
-        this.repaint();
-        System.out.println("AFTER");
+//        try {
+//            wait(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+
+//        System.out.println("AFTER");
     }
 
 //    public void setRightHandPos(double x, double y){
@@ -200,6 +217,8 @@ public class MainApplet extends Applet{
     public void setHandsOnScreen(boolean onScreen){
 //        System.out.println("onScreen: "+ onScreen ? 1 : 0);
         handsOnScreen = onScreen;
+
+//        repaint();
     }
 
     public void setVolumeOn(boolean on){

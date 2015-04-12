@@ -9,6 +9,7 @@ class  SynthListener extends Listener {
 	private boolean onScreen, closedHand;
 	private MainApplet m;
 
+	private int count;
 
     public void onConnect(Controller controller) {
         System.out.println("Connected");
@@ -21,82 +22,85 @@ class  SynthListener extends Listener {
 		leftX = 0;
 		rightY = 0;
 		rightX = 0;
+
+		count = 0;
     }
 
     public void onFrame(Controller controller) {
-        Frame frame = controller.frame();
-        GestureList gList = frame.gestures();
-        for(Gesture g: gList){
-        	switch(g.type()){
-        		case TYPE_SCREEN_TAP:
-        			if(frame.hands().count() == 2){
-        				System.out.println("screentap");
-        				//loop
-        			}
-        			break;
-        		case TYPE_SWIPE:
-        			if(frame.hands().count() == 1){
-						SwipeGesture swipe = new SwipeGesture(g);
-						Vector swipeDir= swipe.direction();
-						if(swipeDir.getX() > 0) {
-							//gh.changeInstrument(true);
-							//m.changeInstrument(true);
+//		if(count % 10 == 0){
+			Frame frame = controller.frame();
+			GestureList gList = frame.gestures();
+			for(Gesture g: gList){
+				switch(g.type()){
+					case TYPE_SCREEN_TAP:
+						if(frame.hands().count() == 2){
+							System.out.println("screentap");
+							//loop
 						}
-						else{
-							//gh.changeInstrument(false);
-							//m.changeInstrument(false);
+						break;
+					case TYPE_SWIPE:
+						if(frame.hands().count() == 1){
+							SwipeGesture swipe = new SwipeGesture(g);
+							Vector swipeDir= swipe.direction();
+							if(swipeDir.getX() > 0) {
+								//gh.changeInstrument(true);
+								//m.changeInstrument(true);
+							}
+							else{
+								//gh.changeInstrument(false);
+								//m.changeInstrument(false);
+							}
 						}
-        			}
-        			break;
-        		case TYPE_KEY_TAP:
-        			if(frame.hands().count() == 2){
-        				System.out.println("key tap");
-        				//short vol burst
+						break;
+					case TYPE_KEY_TAP:
+						if(frame.hands().count() == 2){
+							System.out.println("key tap");
+							//short vol burst
 
-        			}
-                    break;
-        		default:
-                    //for unrecognized gestures, do nothing
-                    break;
+						}
+						break;
+					default:
+						//for unrecognized gestures, do nothing
+						break;
 
-        	}
-        }
-        if(frame.hands().count() == 2){
-			onScreen = true;
+				}
+			}
+			if(frame.hands().count() == 2){
+				onScreen = true;
 
-			rightX = frame.hands().rightmost().fingers().frontmost().tipPosition().getX();
-			rightY = frame.hands().rightmost().fingers().frontmost().tipPosition().getY();
-			leftX = frame.hands().leftmost().fingers().frontmost().tipPosition().getX();
-			leftY = frame.hands().leftmost().fingers().frontmost().tipPosition().getY();
+				rightX = frame.hands().rightmost().fingers().frontmost().tipPosition().getX();
+				rightY = frame.hands().rightmost().fingers().frontmost().tipPosition().getY();
+				leftX = frame.hands().leftmost().fingers().frontmost().tipPosition().getX();
+				leftY = frame.hands().leftmost().fingers().frontmost().tipPosition().getY();
 
-			closedHand = frame.hands().rightmost().grabStrength() > .6;
+				closedHand = frame.hands().rightmost().grabStrength() > .6;
 
-			if(closedHand)
+				if(closedHand)
+					vol = 0;
+
+				else
+					vol = rightY;
+
+				Finger f = frame.hands().leftmost().fingers().frontmost();
+
+				int id = f.id();
+				// float noteY = frame.hands().leftmost().finger(id).tipPosition().getY();
+				int i = (int)(leftY/ 60);
+				if(pitch != i){
+					pitch = i;
+					System.out.println(leftY + "     " + i);
+					gh.changePitch(pitch);
+				}
+			}
+			else{
+				onScreen = false;
+				pitch = 0;
 				vol = 0;
+			}
 
-			else
-				vol = rightY;
-
-	        Finger f = frame.hands().leftmost().fingers().frontmost();
-
-	        int id = f.id();
-	       // float noteY = frame.hands().leftmost().finger(id).tipPosition().getY();
-	        int i = (int)(leftY/ 60);
-	        if(pitch != i){
-	        	pitch = i;
-	        	System.out.println(leftY + "     " + i);
-	        	gh.changePitch(pitch);
-	        }
-        }
-        else{
-			onScreen = false;
-        	pitch = 0;
-        	vol = 0;
-        }
-
-		gh.changeVolume(vol);
-		//System.out.println(frame.hands().leftmost().fingers().frontmost().tipPosition().getX());
-		m.setHandsOnScreen(onScreen);
+			gh.changeVolume(vol);
+			//System.out.println(frame.hands().leftmost().fingers().frontmost().tipPosition().getX());
+			m.setHandsOnScreen(onScreen);
 //		Runnable callApplet1 = new Runnable() {
 //			@Override
 //			public void run() {
@@ -115,11 +119,14 @@ class  SynthListener extends Listener {
 //		Thread t2 = new Thread(callApplet1);
 //		t2.start();
 
-		//System.out.println("heyL: (" + leftX + "," + leftY + ") R: (" + rightX + "," + rightY + ")  on " + onScreen + " pitch: " + pitch + " closed " + closedHand);
+			//System.out.println("heyL: (" + leftX + "," + leftY + ") R: (" + rightX + "," + rightY + ")  on " + onScreen + " pitch: " + pitch + " closed " + closedHand);
 //		m.setRightHandPos(rightX, rightY);
 //		m.setLeftHandPos(leftX, leftY);
 
-		m.setHandPos(leftX, leftY, rightX, rightY);
+			m.setHandPos(leftX, leftY, rightX, rightY);
+//		}
+//
+//		count++;
     }
 
 //	public double getleftX(){return leftX;}
