@@ -1,9 +1,4 @@
-import javax.sound.midi.MidiEvent;
-import javax.sound.midi.MidiSystem;
-import javax.sound.midi.Sequence;
-import javax.sound.midi.Sequencer;
-import javax.sound.midi.ShortMessage;
-import javax.sound.midi.Track;
+import javax.sound.midi.*;
 
 public class Synth {
 	
@@ -20,49 +15,67 @@ public class Synth {
         volume = 0;
 
 	}
-	
 
-	
-	public Sequencer playNote(){
+
+	public Synthesizer playNote(){
 		
+//        try {
+//
+//            Sequencer sequencer = MidiSystem.getSequencer();
+//            sequencer.open();
+//            Sequence sequence = new Sequence(Sequence.PPQ,4);
+//            Track track = sequence.createTrack();
+//
+//            MidiEvent event = null;
+//
+//            ShortMessage first = new ShortMessage();
+//            first.setMessage(192,1,instrument,0);
+//            MidiEvent changeInstrument = new MidiEvent(first, 1);
+//            track.add(changeInstrument);
+//
+//            ShortMessage a = new ShortMessage();
+//            a.setMessage(144,1,pitch,volume);
+//            MidiEvent noteOn = new MidiEvent(a, 1);
+//            track.add(noteOn);
+//
+//            ShortMessage b = new ShortMessage();
+//            b.setMessage(128,1,pitch,volume);
+//            MidiEvent noteOff = new MidiEvent(b, Integer.MAX_VALUE);
+//            track.add(noteOff);
+//
+//            sequencer.setSequence(sequence);
+//            sequencer.start();
+//
+//            return sequencer;
+//
+//        } catch (Exception ex) {
+//        	ex.printStackTrace();
+//        	return null;
+//        }
+
         try {
+            Synthesizer synth = MidiSystem.getSynthesizer();
+            synth.open();
+            MidiChannel[] channels = synth.getChannels();
 
-            Sequencer sequencer = MidiSystem.getSequencer();
-            sequencer.open();
-            Sequence sequence = new Sequence(Sequence.PPQ,4);
-            Track track = sequence.createTrack();
-
-            MidiEvent event = null;
-
-            ShortMessage first = new ShortMessage();
-            first.setMessage(192,1,instrument,0);
-            MidiEvent changeInstrument = new MidiEvent(first, 1);
-            track.add(changeInstrument);
-
-            ShortMessage a = new ShortMessage();
-            a.setMessage(144,1,pitch,volume);
-            MidiEvent noteOn = new MidiEvent(a, 1);
-            track.add(noteOn);
-
-            ShortMessage b = new ShortMessage();
-            b.setMessage(128,1,pitch,volume);
-            MidiEvent noteOff = new MidiEvent(b, Integer.MAX_VALUE);
-            track.add(noteOff);
-
-            sequencer.setSequence(sequence);
-            sequencer.start();
-
-            return sequencer;
-
-        } catch (Exception ex) {
-        	ex.printStackTrace();
-        	return null;
+            channels[4].programChange(instrument);
+            channels[4].noteOn( pitch, volume );
+            return synth;
         }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+
     }
 	
-	public void stopNote(Sequencer sequencer){
-        if(sequencer != null) {
-            sequencer.stop();
+	public void stopNote(Synthesizer synthesizer){
+        if(synthesizer != null) {
+            for (MidiChannel chan : synthesizer.getChannels()) {
+                chan.noteOff(pitch);
+            }
+            synthesizer.close();
         }
     }
 

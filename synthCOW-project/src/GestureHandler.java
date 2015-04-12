@@ -1,26 +1,29 @@
+import javax.sound.midi.Instrument;
 import javax.sound.midi.Sequencer;
+import javax.sound.midi.Synthesizer;
 
 public class GestureHandler {
 	private Synth cow = new Synth();
 	private int instrument;
 	private int numInstruments = 5;
 	private int prevPitch;
-	private Sequencer sequencer;
+	private Synthesizer synthesizer;
 	private int[] instruments;
 	
 	public GestureHandler(){
 		cow = new Synth();
-		sequencer = null;
+		synthesizer = null;
 
 		instruments = new int[numInstruments];
 
-		instruments[0]=89;
-		instruments[1]=1;
-		instruments[2]=25;
-		instruments[3]=17;
-		instruments[4]=81;
+		instruments[0]=39;
+		instruments[1]=19;
+		instruments[2]=63;
+		instruments[3]=87;
+		instruments[4]=55;
 		cow.setInstrument(instruments[0]);
 		instrument = 0;
+
 
 
 	}
@@ -52,18 +55,23 @@ public class GestureHandler {
 			return;
 		}
 
+		int octaves = 0;
+		if(instruments[instrument] == 39){
+			octaves = 24;
+		}
+
 
 		if(pitch == 1){
 
-			cow.setPitch(60);
+			cow.setPitch(60-octaves);
 		}else if(pitch == 2){
-			cow.setPitch(63);
+			cow.setPitch(63 - octaves);
 		}else if(pitch == 3){
-			cow.setPitch(65);
+			cow.setPitch(65 - octaves);
 		}else if(pitch == 4){
-			cow.setPitch(67);
+			cow.setPitch(67 - octaves);
 		}else if(pitch >= 5){
-			cow.setPitch(70);
+			cow.setPitch(70 - octaves);
 		}
 
 		activateVolume(true);
@@ -81,6 +89,7 @@ public class GestureHandler {
 			volume = 300;
 		}
 		cow.setVolume((int)((volume*127)/300));
+
 		//cow.setVolume(127);
 		
 	}
@@ -92,11 +101,11 @@ public class GestureHandler {
 			cow.setIsPlaying(on);
 
 			//if(sequencer.isRunning()) {
-				cow.stopNote(sequencer);
+				cow.stopNote(synthesizer);
 			//-}
 
 			if (cow.getIsPlaying()) {
-				sequencer = cow.playNote();
+				synthesizer = cow.playNote();
 			}
 
 			prevPitch = cow.getPitch();
