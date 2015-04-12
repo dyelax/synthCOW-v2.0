@@ -9,7 +9,7 @@ class  SynthListener extends Listener {
 	private boolean onScreen, closedHand;
 	private MainApplet m;
 
-	private int count;
+	private int swipeNum;
 
     public void onConnect(Controller controller) {
         System.out.println("Connected");
@@ -23,7 +23,7 @@ class  SynthListener extends Listener {
 		rightY = 0;
 		rightX = 0;
 
-		count = 0;
+		swipeNum = 0;
     }
 
     public void onFrame(Controller controller) {
@@ -45,9 +45,11 @@ class  SynthListener extends Listener {
 							if(swipeDir.getX() > 0) {
 								gh.changeInstrument(true);
 								//m.changeInstrument(true);
+								swipeNum = 1;
 							}
 							else{
 								gh.changeInstrument(false);
+								swipeNum = -1;
 								//m.changeInstrument(false);
 							}
 						}
@@ -110,6 +112,7 @@ class  SynthListener extends Listener {
 //		m.setHandPos(leftX, leftY, rightX, rightY);
     }
 
+	public int getSwipeNum(){return swipeNum;}
 //	public double getleftX(){return leftX;}
 //	public double getleftY(){return leftY;}
 //	public double getrightX(){return rightX;}
