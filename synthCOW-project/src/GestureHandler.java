@@ -16,7 +16,7 @@ public class GestureHandler {
 
 		instruments = new int[numInstruments];
 
-		instruments[0]=39;
+		instruments[0]=20;
 		instruments[1]=19;
 		instruments[2]=63;
 		instruments[3]=87;
@@ -96,6 +96,9 @@ public class GestureHandler {
 	
 	public void activateVolume(boolean on){
 		//Used to activate sound
+
+//		System.out.println("prev pitch: " + prevPitch);
+//		System.out.println("cow pitch: " + cow.getPitch());
 
 		if(prevPitch != cow.getPitch()) {
 			cow.setIsPlaying(on);

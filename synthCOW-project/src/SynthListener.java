@@ -8,6 +8,7 @@ class  SynthListener extends Listener {
 	private double leftX,leftY,rightX,rightY;
 	private boolean onScreen, closedHand;
 	private MainApplet m;
+	boolean justOpened = false;
 
 	private int swipeNum;
 
@@ -81,21 +82,29 @@ class  SynthListener extends Listener {
 
 			if(closedHand) {
 				vol = 0;
+				pitch = 0;
+				gh.changePitch(pitch);
+				justOpened = true;
 			}else {
+
 				vol = rightY;
+
+
+				Finger f = frame.hands().leftmost().fingers().frontmost();
+
+				int id = f.id();
+				// float noteY = frame.hands().leftmost().finger(id).tipPosition().getY();
+				int i = (int) (leftY / 60);
+				if(justOpened) {
+					gh.changeVolume(vol);
+					gh.changePitch(i);
+					justOpened = false;
+				}else if(pitch != i) {
+					pitch = i;
+					System.out.println(leftY + "     " + i);
+					gh.changePitch(pitch);
+				}
 			}
-
-
-			Finger f = frame.hands().leftmost().fingers().frontmost();
-
-	        int id = f.id();
-	       // float noteY = frame.hands().leftmost().finger(id).tipPosition().getY();
-	        int i = (int)(leftY/ 60);
-	        if(pitch != i){
-	        	pitch = i;
-	        	System.out.println(leftY + "     " + i);
-	        	gh.changePitch(pitch);
-	        }
 		}
         else{
 			onScreen = false;
