@@ -72,7 +72,7 @@ public class GestureHandler {
 	public void activateVolume(boolean on){
 		//Used to activate sound
 
-		if(clockYes != on) {
+		if(clockYes != on || on) {
 			cow.setIsPlaying(on);
 
 			if (!cow.getIsPlaying()) {
