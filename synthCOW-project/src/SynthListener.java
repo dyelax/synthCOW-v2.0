@@ -71,11 +71,11 @@ class  SynthListener extends Listener {
 
 			closedHand = frame.hands().rightmost().grabStrength() > .6;
 
-			if(closedHand)
+			if(closedHand) {
 				vol = 0;
-
-			else
+			}else {
 				vol = rightY;
+			}
 
 	        Finger f = frame.hands().leftmost().fingers().frontmost();
 
@@ -87,16 +87,18 @@ class  SynthListener extends Listener {
 	        	System.out.println(leftY + "     " + i);
 	        	gh.changePitch(pitch);
 	        }
-        }
+		}
         else{
 			onScreen = false;
         	pitch = 0;
+			gh.changePitch(pitch);
         	vol = 0;
+			gh.changeVolume(vol);
         }
 
 		gh.changeVolume(vol);
 		//System.out.println(frame.hands().leftmost().fingers().frontmost().tipPosition().getX());
-		m.setHandsOnScreen(onScreen);
+		//m.setHandsOnScreen(onScreen);
 //		Runnable callApplet1 = new Runnable() {
 //			@Override
 //			public void run() {
@@ -119,7 +121,7 @@ class  SynthListener extends Listener {
 //		m.setRightHandPos(rightX, rightY);
 //		m.setLeftHandPos(leftX, leftY);
 
-		m.setHandPos(leftX, leftY, rightX, rightY);
+		//m.setHandPos(leftX, leftY, rightX, rightY);
     }
 
 //	public double getleftX(){return leftX;}

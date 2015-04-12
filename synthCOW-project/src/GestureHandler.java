@@ -4,7 +4,7 @@ public class GestureHandler {
 	private Synth cow = new Synth();
 	private int instrument;
 	private int numInstruments;
-	private boolean clockYes;
+	private int prevPitch;
 	private Sequencer sequencer;
 	
 	public GestureHandler(){
@@ -29,16 +29,16 @@ public class GestureHandler {
 	}
 	
 	public void changePitch(int pitch){
-		if(pitch < 0 || pitch > 5){
+		if(pitch < 0){
 			System.out.println("Pitch is out of bounds!");
 			return;
 		}
 		if(pitch == 0){
+			cow.setPitch(0);
 			activateVolume(false);
 			return;
 		}
 
-		activateVolume(true);
 
 		if(pitch == 1){
 
@@ -49,9 +49,12 @@ public class GestureHandler {
 			cow.setPitch(65);
 		}else if(pitch == 4){
 			cow.setPitch(67);
-		}else if(pitch == 5){
+		}else if(pitch >= 5){
 			cow.setPitch(70);
 		}
+
+		activateVolume(true);
+
 	}
 	
 	public void changeVolume(double volume){
@@ -64,24 +67,26 @@ public class GestureHandler {
 		if(volume > 500){
 			volume = 500;
 		}
-		cow.setVolume((int)((volume*127)/500));
-		
+		//cow.setVolume((int)((volume*127)/500));
+		cow.setVolume(127);
 		
 	}
 	
 	public void activateVolume(boolean on){
 		//Used to activate sound
 
-		if(clockYes != on || on) {
+		if(prevPitch != cow.getPitch()) {
 			cow.setIsPlaying(on);
 
-			if (!cow.getIsPlaying()) {
+			//if(sequencer.isRunning()) {
 				cow.stopNote(sequencer);
-			} else {
-				cow.stopNote(sequencer);
+			//-}
+
+			if (cow.getIsPlaying()) {
 				sequencer = cow.playNote();
 			}
-			clockYes = on;
+
+			prevPitch = cow.getPitch();
 		}
 		
 	}

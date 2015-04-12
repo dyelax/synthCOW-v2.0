@@ -44,7 +44,7 @@ public class Synth {
 
             ShortMessage b = new ShortMessage();
             b.setMessage(128,1,pitch,volume);
-            MidiEvent noteOff = new MidiEvent(b, 16);
+            MidiEvent noteOff = new MidiEvent(b, Integer.MAX_VALUE);
             track.add(noteOff);
 
             sequencer.setSequence(sequence);
