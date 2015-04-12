@@ -160,15 +160,18 @@ public class MainApplet extends Applet implements ActionListener{
 
         //draw instrument image/handle swipes
         long curTime = System.currentTimeMillis();
+        int change = listener.getSwipeNum();
+        System.out.println("curTime: "+curTime+", lastSwipeTime: "+lastSwipeTimeMillis);
         if (curTime - lastSwipeTimeMillis >= 1500){
-            int change = listener.getSwipeNum();
             if (change == -1){
                 listener.getGh().changeInstrument(false);
+                lastSwipeTimeMillis = curTime;
             }else if (change == 1){
                 listener.getGh().changeInstrument(true);
+                lastSwipeTimeMillis = curTime;
             }
 
-            instrumentNum += listener.getSwipeNum();
+            instrumentNum += change;
 
             if (instrumentNum > 4){
                 instrumentNum = 0;
@@ -176,7 +179,7 @@ public class MainApplet extends Applet implements ActionListener{
                 instrumentNum = 4;
             }
 
-            lastSwipeTimeMillis = curTime;
+
         }
 
 //        System.out.println(instrumentImages[0].getWidth(null) + " " + instrumentImages[0].getHeight(null));

@@ -47,11 +47,15 @@ class  SynthListener extends Listener {
 								//gh.changeInstrument(true);
 								//m.changeInstrument(true);
 								swipeNum = -1;
+
+								System.out.println("Swipe back");
 							}
 							else{
 								//gh.changeInstrument(false);
 								swipeNum = 1;
 								//m.changeInstrument(false);
+
+								System.out.println("Swipe forward");
 							}
 						}
 						break;
