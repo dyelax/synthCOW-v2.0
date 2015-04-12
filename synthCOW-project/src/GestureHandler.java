@@ -55,10 +55,12 @@ public class GestureHandler {
 	public void changeVolume(double volume){
 		//calculate volume values to pass to cow; pure math
 		
-		if(volume < 0.0 || volume > 11){
+		if(volume < 0.0 || volume > 300.0){
 			System.out.println("Volume value is out of bounds!");
 			return;
 		}
+
+		cow.setVolume((int)((volume*127)/300));
 		
 		
 	}
