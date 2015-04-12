@@ -96,7 +96,7 @@ class  SynthListener extends Listener {
 
 		gh.changeVolume(vol);
 		//System.out.println(frame.hands().leftmost().fingers().frontmost().tipPosition().getX());
-//		m.setHandsOnScreen(onScreen);
+		m.setHandsOnScreen(onScreen);
 //		Runnable callApplet1 = new Runnable() {
 //			@Override
 //			public void run() {
@@ -115,9 +115,11 @@ class  SynthListener extends Listener {
 //		Thread t2 = new Thread(callApplet1);
 //		t2.start();
 
-//		System.out.println("heyL: (" + leftX + "," + leftY + ") R: (" + rightX + "," + rightY + ")  on " + onScreen + " pitch: " + pitch + " closed " + closedHand);
+		//System.out.println("heyL: (" + leftX + "," + leftY + ") R: (" + rightX + "," + rightY + ")  on " + onScreen + " pitch: " + pitch + " closed " + closedHand);
+//		m.setRightHandPos(rightX, rightY);
+//		m.setLeftHandPos(leftX, leftY);
 
-
+		m.setHandPos(leftX, leftY, rightX, rightY);
     }
 
 //	public double getleftX(){return leftX;}
