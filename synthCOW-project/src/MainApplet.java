@@ -2,6 +2,7 @@ import com.leapmotion.leap.Controller;
 import java.applet.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 
 public class MainApplet extends Applet{
@@ -12,7 +13,7 @@ public class MainApplet extends Applet{
     private int circleRadius;
 
      public void init(){
-         setSize(1200, 840);
+         setSize(1080, 840);
 
          leftHand = new Point2D.Double(10, 10);
          rightHand = new Point2D.Double(200, 200);
@@ -41,11 +42,50 @@ public class MainApplet extends Applet{
     public void paint(Graphics g){
         Graphics2D g2 = (Graphics2D)g;
 
+        //
         //draw background
+        //
         setBackground(Color.blue);
 
+        //note lines
+        g2.setColor(new Color(0f, 0f, 0f, 0.5f));
+
+        Rectangle2D line1 = new Rectangle2D.Double(40, 200, 1000, 120);
+        Rectangle2D line3 = new Rectangle2D.Double(40, 440, 1000, 120);
+        Rectangle2D line5 = new Rectangle2D.Double(40, 680, 1000, 120);
+
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+
+        float[] fractions = {0f, 0.8f};
+        Color[] colors = {new Color(0f, 0f, 0f, 0.5f), new Color(0f, 0f, 0f, 0f)};
+        LinearGradientPaint paint = new LinearGradientPaint(40, 0, 1000, 0, fractions, colors);
+
+        g2.fill(line1);
+        g2.fill(line3);
+        g2.fill(line5);
+
+//        g2.drawRect(40, 200, 1000, 120);
+//        g2.drawRect(40, 440, 1000, 120);
+//        g2.drawRect(40, 680, 1000, 120);
+//        g2.fillRect(40, 200, 1000, 120);
+//        g2.fillRect(40, 440, 1000, 120);
+//        g2.fillRect(40, 680, 1000, 120);
+
+        //brackets
+        g2.setColor(Color.white);
+        g2.setStroke(new BasicStroke(1));
+
+        g2.drawLine(40, 200, 40, 800);
+        g2.drawLine(40, 200, 48, 200);
+        g2.drawLine(40, 800, 48, 800);
+
+        g2.drawLine(1040, 200, 1040, 800);
+        g2.drawLine(1032, 200, 1040, 200);
+        g2.drawLine(1032, 800, 1040, 800);
+
+        //draw hand-circles
         if(handsOnScreen) {
-            g2.setColor(Color.white);
             g2.setStroke(new BasicStroke(3));
 
             g2.drawOval((int) leftHand.getX(), (int) leftHand.getY(), circleRadius, circleRadius);
@@ -69,14 +109,14 @@ public class MainApplet extends Applet{
     public void setLeftHandPos(double x, double y){
         System.out.println("L: (" + x + ", " + y + ")");
 
-        double xPos = 2*x + 240 + 40;//x from leap goes -120 to 120, plus 20px buffer on side @2x
+        double xPos = 2*x + 500 + 40;//x from leap goes -250 to 250, plus 20px buffer on side @2x
         if (xPos < 40){
             xPos = 20;
-        }else if (xPos > 280){
-            xPos = 280;
+        }else if (xPos > 1040){
+            xPos = 1040;
         }
 
-        double yPos = 200 + (600 - y);//invert y coords from leap and give 100px margin at top
+        double yPos = 200 + (600 - y);//invert y coords from leap and give 100px margin at top @2x
         if (yPos > 800){
             yPos = 800;
         }else if (yPos < 200){
@@ -88,14 +128,14 @@ public class MainApplet extends Applet{
     public void setRightHandPos(double x, double y){
         System.out.println("R: ("+x+", "+y+")");
 
-        double xPos = 2*x + 240 + 40;//x from leap goes -120 to 120, plus 20px buffer on side @2x
+        double xPos = 2*x + 500 + 40;//x from leap goes -250 to 250, plus 20px buffer on side @2x
         if (xPos < 40){
             xPos = 20;
-        }else if (xPos > 280){
-            xPos = 280;
+        }else if (xPos > 1040){
+            xPos = 1040;
         }
 
-        double yPos = 200 + (600 - y);//invert y coords from leap and give 100px margin at top
+        double yPos = 200 + (600 - y);//invert y coords from leap and give 100px margin at top @2x
         if (yPos > 800){
             yPos = 800;
         }else if (yPos < 200){
