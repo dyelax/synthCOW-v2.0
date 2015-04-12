@@ -62,6 +62,8 @@ public class GestureHandler {
 			octaves = 36;
 		}else if (instruments[instrument] == 53){
 			octaves = 12;
+		}else if (instruments[instrument] == 30){
+			octaves = 12;
 		}
 
 

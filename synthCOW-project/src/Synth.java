@@ -15,7 +15,25 @@ public class Synth {
 
 	}
 
+    public Synthesizer playBeat(){
 
+
+        try {
+            Synthesizer synth = MidiSystem.getSynthesizer();
+            synth.open();
+            MidiChannel[] channels = synth.getChannels();
+
+            channels[10].programChange(instrument);
+            channels[10].noteOn( pitch, volume );
+            return synth;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+
+    }
 
 	public Synthesizer playNote(){
 		
