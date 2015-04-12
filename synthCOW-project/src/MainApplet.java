@@ -4,9 +4,7 @@ import java.applet.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.io.IOException;
 import javax.swing.*;
 
 public class MainApplet extends Applet implements ActionListener{
@@ -18,7 +16,7 @@ public class MainApplet extends Applet implements ActionListener{
 
     private boolean onScreen, closedHand;
 
-    private int circleRadius;
+    private int circleDiameter;
 
      public void init(){
          setSize(1080, 840);
@@ -32,7 +30,7 @@ public class MainApplet extends Applet implements ActionListener{
          leftX = 10; leftY = 10;
          rightX = 200; rightY = 200;
 
-         circleRadius = 100;
+         circleDiameter = 100;
 
          //setup leapmotion
          // Create a sample listener and controller
@@ -66,14 +64,14 @@ public class MainApplet extends Applet implements ActionListener{
 
             double xPos = 2*rx + 500 + 40;//x from leap goes -250 to 250, plus 20px buffer on side @2x
             if (xPos < 40){
-                xPos = 20;
-            }else if (xPos > 1040){
-                xPos = 1040;
+                xPos = 40;
+            }else if (xPos > 1040-circleDiameter){
+                xPos = 1040-circleDiameter;
             }
 
             double yPos = 200 + (600 - 2*ry + 60);//invert y coords from leap and give 100px margin at top @2x
-            if (yPos > 800){
-                yPos = 800;
+            if (yPos > 800-circleDiameter){
+                yPos = 800-circleDiameter;
             }else if (yPos < 200){
                 yPos = 200;
             }
@@ -83,14 +81,14 @@ public class MainApplet extends Applet implements ActionListener{
 
             xPos = 2*lx + 500 + 40;//x from leap goes -250 to 250, plus 20px buffer on side @2x
             if (xPos < 40){
-                xPos = 20;
-            }else if (xPos > 1040){
-                xPos = 1040;
+                xPos = 40;
+            }else if (xPos > 1040-circleDiameter){
+                xPos = 1040-circleDiameter;
             }
 
             yPos = 200 + (600 - 2*ly + 60);//invert y coords from leap and give 100px margin at top @2x
-            if (yPos > 800){
-                yPos = 800;
+            if (yPos > 800-circleDiameter){
+                yPos = 800-circleDiameter;
             }else if (yPos < 200) {
                 yPos = 200;
             }
@@ -160,90 +158,35 @@ public class MainApplet extends Applet implements ActionListener{
         if(onScreen) {
             g2.setStroke(new BasicStroke(3));
 
-            g2.drawOval((int) leftX, (int) leftY, circleRadius, circleRadius);
+            g2.drawOval((int) leftX, (int) leftY, circleDiameter, circleDiameter);
 
             if (closedHand){
                 g2.setColor(new Color(1f, 1f, 1f, 0.4f));
             }
-            g2.drawOval((int) rightX, (int) rightY, circleRadius, circleRadius);
+            g2.drawOval((int) rightX, (int) rightY, circleDiameter, circleDiameter);
 
             g2.setColor(new Color(1f, 1f, 1f, 0.5f));
 
-            g2.fillOval((int) leftX, (int) leftY, circleRadius, circleRadius);
+            g2.fillOval((int) leftX, (int) leftY, circleDiameter, circleDiameter);
 
             if (closedHand){
                 g2.setColor(new Color(1f, 1f, 1f, 0.2f));
             }
-            g2.fillOval((int) rightX, (int) rightY, circleRadius, circleRadius);
+            g2.fillOval((int) rightX, (int) rightY, circleDiameter, circleDiameter);
         }
     }
 
-//    public void setHandPos(double lx, double ly, double rx, double ry){
-////        System.out.println("R: (" + rx + ", " + ry + ")");
-//
-//
-////
-//        double xPos = 2*rx + 500 + 40;//x from leap goes -250 to 250, plus 20px buffer on side @2x
-//        if (xPos < 40){
-//            xPos = 20;
-//        }else if (xPos > 1040){
-//            xPos = 1040;
-//        }
-//
-//        double yPos = 200 + (600 - ry);//invert y coords from leap and give 100px margin at top @2x
-//        if (yPos > 800){
-//            yPos = 800;
-//        }else if (yPos < 200){
-//            yPos = 200;
-//        }
-//
-//        this.rightX = xPos;
-//        this.rightY = yPos;
-//
-//////        System.out.println("L: (" + lx + ", " + ly + ")");
-////
-//        xPos = 2*lx + 500 + 40;//x from leap goes -250 to 250, plus 20px buffer on side @2x
-//        if (xPos < 40){
-//            xPos = 20;
-//        }else if (xPos > 1040){
-//            xPos = 1040;
-//        }
-//
-//        yPos = 200 + (600 - ly);//invert y coords from leap and give 100px margin at top @2x
-//        if (yPos > 800){
-//            yPos = 800;
-//        }else if (yPos < 200){
-//            yPos = 200;
-//        }
-//
-//        xPos = 300;
-//        yPos = 400;
-//
-//        this.leftX = xPos;
-//        this.leftY = yPos;
-//
-//        System.out.println("L: (" + leftX + ", " + leftY + ")");
-//        System.out.println("R: (" + rightX + ", " + rightY + ")");
-//
-//        repaint();
-//    }
-//
-//    public void setHandsOnScreen(boolean onScreen){
-////        System.out.println("onScreen: "+ onScreen ? 1 : 0);
-//        if(onScreen){
-//            System.out.println("YES");
-//        }else {
-//            System.out.println("NO");
-//        }
-//        handsOnScreen = onScreen;
-//    }
-//
-//    public void setVolumeOn(boolean on){
-//        volumeOn = on;
-//    }
-//
-//    ///If next == true, switch to the next instrument, else switch to the previous instrument
-//    public void changeInstrument(boolean next){
-//
-//    }
+    private java.awt.Image dbImage;
+    private Graphics dbg;
+    public void update (Graphics g){
+        if (dbImage == null) {
+            dbImage = createImage (this.getSize().width, this.getSize().height);
+            dbg = dbImage.getGraphics ();
+        }
+        dbg.setColor (getBackground ());
+        dbg.fillRect (0, 0, this.getSize().width, this.getSize().height);
+        dbg.setColor (getForeground());
+        paint (dbg);
+        g.drawImage (dbImage, 0, 0, this);
+    }
 }
