@@ -39,11 +39,11 @@ class  SynthListener extends Listener {
 						SwipeGesture swipe = new SwipeGesture(g);
 						Vector swipeDir= swipe.direction();
 						if(swipeDir.getX() > 0) {
-							gh.changeInstrument(true);
+							//gh.changeInstrument(true);
 							//m.changeInstrument(true);
 						}
 						else{
-							gh.changeInstrument(false);
+							//gh.changeInstrument(false);
 							//m.changeInstrument(false);
 						}
         			}
@@ -84,7 +84,7 @@ class  SynthListener extends Listener {
 	        int i = (int)(leftY/ 60);
 	        if(pitch != i){
 	        	pitch = i;
-	        	//System.out.println(leftY + "     " + i);
+	        	System.out.println(leftY + "     " + i);
 	        	gh.changePitch(pitch);
 	        }
         }
@@ -95,6 +95,7 @@ class  SynthListener extends Listener {
         }
 
 		gh.changeVolume(vol);
+		//System.out.println(frame.hands().leftmost().fingers().frontmost().tipPosition().getX());
 //		m.setHandsOnScreen(onScreen);
 //		Runnable callApplet1 = new Runnable() {
 //			@Override
