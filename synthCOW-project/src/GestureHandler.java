@@ -3,13 +3,26 @@ import javax.sound.midi.Sequencer;
 public class GestureHandler {
 	private Synth cow = new Synth();
 	private int instrument;
-	private int numInstruments;
+	private int numInstruments = 5;
 	private int prevPitch;
 	private Sequencer sequencer;
+	private int[] instruments;
 	
 	public GestureHandler(){
 		cow = new Synth();
 		sequencer = null;
+
+		instruments = new int[numInstruments];
+
+		instruments[0]=89;
+		instruments[1]=1;
+		instruments[2]=25;
+		instruments[3]=17;
+		instruments[4]=81;
+		cow.setInstrument(instruments[0]);
+		instrument = 0;
+
+
 	}
 	
 	public void changeInstrument(boolean b){
@@ -25,7 +38,7 @@ public class GestureHandler {
 			}
 		}
 
-		cow.setInstrument(instrument);
+		cow.setInstrument(instruments[instrument]);
 	}
 	
 	public void changePitch(int pitch){
@@ -64,11 +77,11 @@ public class GestureHandler {
 //			System.out.println("Volume value is out of bounds!");
 //			return;
 //		}
-		if(volume > 500){
-			volume = 500;
+		if(volume > 300){
+			volume = 300;
 		}
-		//cow.setVolume((int)((volume*127)/500));
-		cow.setVolume(127);
+		cow.setVolume((int)((volume*127)/300));
+		//cow.setVolume(127);
 		
 	}
 	

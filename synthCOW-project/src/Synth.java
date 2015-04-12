@@ -11,15 +11,17 @@ public class Synth {
 	private boolean isPlaying;
 	private int volume;
 	private int instrument;
+    private int saveLoop;
+
 
 	public Synth(){
 		pitch = 60;
         isPlaying = false;
         volume = 0;
-        instrument = 20;
+
 	}
 	
-	
+
 	
 	public Sequencer playNote(){
 		

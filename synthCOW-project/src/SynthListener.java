@@ -76,13 +76,15 @@ class  SynthListener extends Listener {
 
 			closedHand = frame.hands().rightmost().grabStrength() > .6;
 
+
 			if(closedHand) {
 				vol = 0;
 			}else {
 				vol = rightY;
 			}
 
-	        Finger f = frame.hands().leftmost().fingers().frontmost();
+
+			Finger f = frame.hands().leftmost().fingers().frontmost();
 
 	        int id = f.id();
 	       // float noteY = frame.hands().leftmost().finger(id).tipPosition().getY();
@@ -96,10 +98,10 @@ class  SynthListener extends Listener {
         else{
 			onScreen = false;
         	pitch = 0;
-			gh.changePitch(pitch);
         	vol = 0;
 			gh.changeVolume(vol);
-        }
+			gh.changePitch(pitch);
+		}
 
 		gh.changeVolume(vol);
 		//System.out.println(frame.hands().leftmost().fingers().frontmost().tipPosition().getX());
