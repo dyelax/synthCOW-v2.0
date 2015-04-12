@@ -46,11 +46,11 @@ class  SynthListener extends Listener {
 							if(swipeDir.getX() > 0) {
 								gh.changeInstrument(true);
 								//m.changeInstrument(true);
-								swipeNum = 1;
+								swipeNum = -1;
 							}
 							else{
 								gh.changeInstrument(false);
-								swipeNum = -1;
+								swipeNum = 1;
 								//m.changeInstrument(false);
 							}
 						}
