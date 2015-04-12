@@ -6,7 +6,7 @@ public class main_applet extends Applet{
     Point2D.Double leftHand;
     Point2D.Double rightHand;
      public void init(){
-         setSize(1200, 840);
+         setSize(1200, 8400);
 
          leftHand = new Point2D.Double(10, 10);
          rightHand = new Point2D.Double(200, 200);
