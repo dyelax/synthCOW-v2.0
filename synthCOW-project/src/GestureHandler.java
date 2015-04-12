@@ -34,7 +34,7 @@ public class GestureHandler {
 		if(pitch == 0){
 			activateVolume(false);
 		}else if(pitch == 1){
-			//cow.playNote*****(a);
+			//cow.playNote*
 		}else if(pitch == 2){
 			//cow.playNote*****(b);
 		}else if(pitch == 3){
@@ -60,11 +60,7 @@ public class GestureHandler {
 	public void activateVolume(boolean on){
 		//Used to activate sound
 		
-		if(on){
-			isSilent = true;
-		}else{
-			isSilent = false;
-		}
+		cow.setIsPlaying(on);
 		
 	}
 	
