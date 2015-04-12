@@ -16,11 +16,11 @@ public class GestureHandler {
 
 		instruments = new int[numInstruments];
 
-		instruments[0]=20;
-		instruments[1]=19;
-		instruments[2]=63;
-		instruments[3]=87;
-		instruments[4]=55;
+		instruments[0]=39; //bass
+		instruments[1]=53; //strings
+		instruments[2]=75; //keyboard
+		instruments[3]=65; //horn
+		instruments[4]=30; //cow
 		cow.setInstrument(instruments[0]);
 		instrument = 0;
 
@@ -30,7 +30,9 @@ public class GestureHandler {
 	
 	public void changeInstrument(boolean b){
 		//changes instruments; next if true, previous if false
-		
+		if(synthesizer != null) {
+			synthesizer.close();
+		}
 		if(b == true){
 			instrument = (instrument + 1) % numInstruments;
 		}else{
@@ -57,6 +59,8 @@ public class GestureHandler {
 
 		int octaves = 0;
 		if(instruments[instrument] == 39){
+			octaves = 24;
+		}else if (instruments[instrument] == 53){
 			octaves = 24;
 		}
 
