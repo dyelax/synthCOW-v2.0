@@ -11,7 +11,7 @@ public class Synth {
 	private boolean isPlaying;
 	private int volume;
 	private int instrument;
-	
+	Sequencer sequencer;
 	
 	public Synth(){
 		pitch = 60;
@@ -26,7 +26,7 @@ public class Synth {
 		
         try {
 
-            Sequencer sequencer = MidiSystem.getSequencer();
+            sequencer = MidiSystem.getSequencer();
             sequencer.open();
             Sequence sequence = new Sequence(Sequence.PPQ,4);
             Track track = sequence.createTrack();
@@ -94,6 +94,8 @@ public class Synth {
     public void setInstrument(int instrument){
     	this.instrument = instrument;
     }
+
+    public Sequencer getSequencer(){ return sequencer; }
     
     
 	
