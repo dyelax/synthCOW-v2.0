@@ -1,5 +1,4 @@
 import com.leapmotion.leap.*;
-
 import java.applet.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -125,8 +124,9 @@ public class MainApplet extends Applet implements ActionListener{
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
         float[] fractions = {0f, 0.8f};
-        Color[] colors = {new Color(0f, 0f, 0f, 0.5f), new Color(0f, 0f, 0f, 0f)};
+        Color[] colors = {new Color(0f, 0f, 0f, 0.4f), new Color(0f, 0f, 0f, 0f)};
         LinearGradientPaint paint = new LinearGradientPaint(40, 0, 1000, 0, fractions, colors);
+        g2.setPaint(paint);
 
         g2.fill(line1);
         g2.fill(line3);
