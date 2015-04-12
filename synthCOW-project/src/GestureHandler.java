@@ -61,8 +61,10 @@ public class GestureHandler {
 //			System.out.println("Volume value is out of bounds!");
 //			return;
 //		}
-
-		cow.setVolume((int)((volume*127)/300));
+		if(volume > 500){
+			volume = 500;
+		}
+		cow.setVolume((int)((volume*127)/500));
 		
 		
 	}
