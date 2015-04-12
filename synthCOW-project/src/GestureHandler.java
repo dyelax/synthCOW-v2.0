@@ -33,7 +33,13 @@ public class GestureHandler {
 		}
 		if(pitch == 0){
 			activateVolume(false);
-		}else if(pitch == 1){
+			return;
+		}
+
+		activateVolume(true);
+
+		if(pitch == 1){
+
 			//cow.playNote*
 		}else if(pitch == 2){
 			//cow.playNote*****(b);
