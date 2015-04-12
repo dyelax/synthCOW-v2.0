@@ -6,7 +6,6 @@ public class Synth {
 	private boolean isPlaying;
 	private int volume;
 	private int instrument;
-    private int saveLoop;
 
 
 	public Synth(){
@@ -15,6 +14,7 @@ public class Synth {
         volume = 0;
 
 	}
+
 
 
 	public Synthesizer playNote(){
@@ -111,10 +111,5 @@ public class Synth {
     	this.instrument = instrument;
     }
 
-    
-	
-	
-	
-	
-	
+
 }

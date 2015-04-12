@@ -16,7 +16,7 @@ public class GestureHandler {
 
 		instruments = new int[numInstruments];
 
-		instruments[0]=39; //bass
+		instruments[0]=59; //bass
 		instruments[1]=53; //strings
 		instruments[2]=75; //keyboard
 		instruments[3]=65; //horn
@@ -58,10 +58,10 @@ public class GestureHandler {
 		}
 
 		int octaves = 0;
-		if(instruments[instrument] == 39){
-			octaves = 24;
+		if(instruments[instrument] == 59){
+			octaves = 36;
 		}else if (instruments[instrument] == 53){
-			octaves = 24;
+			octaves = 12;
 		}
 
 
