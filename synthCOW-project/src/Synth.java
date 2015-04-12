@@ -7,7 +7,7 @@ import javax.sound.midi.Track;
 
 public class Synth {
 	
-	private int pitch = 50;
+	private int pitch = 60;
 	private boolean isPlaying = false;
 	private int volume = 0;
 	private int instrument = 20;
