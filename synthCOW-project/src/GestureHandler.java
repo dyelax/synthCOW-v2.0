@@ -79,11 +79,6 @@ public class GestureHandler {
 				cow.stopNote(sequencer);
 			} else {
 				cow.stopNote(sequencer);
-				try {
-					Thread.sleep(10);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
 				sequencer = cow.playNote();
 			}
 			clockYes = on;
