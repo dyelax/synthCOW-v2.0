@@ -1,9 +1,5 @@
-import com.leapmotion.leap.Controller;
-import com.leapmotion.leap.Finger;
-import com.leapmotion.leap.Frame;
-import com.leapmotion.leap.Gesture;
-import com.leapmotion.leap.GestureList;
-import com.leapmotion.leap.Listener;
+import com.leapmotion.leap.*;
+
 class  SynthListener extends Listener {
 
 	private int pitch;
@@ -36,9 +32,16 @@ class  SynthListener extends Listener {
         			break;
         		case TYPE_SWIPE:
         			if(frame.hands().count() == 1){
-        				System.out.println("heyo, swipe right");
-        				gh.changeInstrument(true);
-        				System.out.println("changed inst");
+						SwipeGesture swipe = new SwipeGesture(g);
+						Vector swipeDir= swipe.direction();
+						if(swipeDir.getX() > 0) {
+							gh.changeInstrument(true);
+							//m.changeInstrument(true);
+						}
+						else{
+							gh.changeInstrument(false);
+							//m.changeInstrument(false);
+						}
         			}
         			break;
         		case TYPE_KEY_TAP:
