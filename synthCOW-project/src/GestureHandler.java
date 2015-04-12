@@ -14,11 +14,7 @@ public class GestureHandler {
 		//changes instruments; next if true, previous if false
 		
 		if(b == true){
-			if(instrument == numInstruments - 1){
-				instrument = 0;
-			}else{
-				instrument++;
-			}
+			instrument = (instrument + 1) % numInstruments;
 		}else{
 			if(instrument == 0){
 				instrument = numInstruments - 1;
@@ -26,6 +22,8 @@ public class GestureHandler {
 				instrument--;
 			}
 		}
+
+		cow.setInstruments(instrument);
 	}
 	
 	public void changePitch(int pitch){
