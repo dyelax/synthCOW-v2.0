@@ -35,7 +35,7 @@ class  SynthListener extends Listener {
 				switch(g.type()){
 					case TYPE_SCREEN_TAP:
 						if(frame.hands().count() == 2){
-							System.out.println("screentap");
+							//System.out.println("screentap");
 							//loop
 						}
 						break;
@@ -48,20 +48,20 @@ class  SynthListener extends Listener {
 								//m.changeInstrument(true);
 								swipeNum = -1;
 
-								System.out.println("Swipe back");
+								//System.out.println("Swipe back");
 							}
 							else{
 								//gh.changeInstrument(false);
 								swipeNum = 1;
 								//m.changeInstrument(false);
 
-								System.out.println("Swipe forward");
+								//System.out.println("Swipe forward");
 							}
 						}
 						break;
 					case TYPE_KEY_TAP:
 						if(frame.hands().count() == 2){
-							System.out.println("key tap");
+							//System.out.println("key tap");
 							//short vol burst
 
 						}
@@ -105,7 +105,7 @@ class  SynthListener extends Listener {
 					justOpened = false;
 				}else if(pitch != i) {
 					pitch = i;
-					System.out.println(leftY + "     " + i);
+					//System.out.println(leftY + "     " + i);
 					gh.changePitch(pitch);
 				}
 			}

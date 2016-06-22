@@ -58,8 +58,6 @@ public class MainApplet extends Applet implements ActionListener{
 
 
          // Here we load the image.
-         // Only Gif and JPG are allowed. Transparant gif also.
-
          instrumentImages[0] = Toolkit.getDefaultToolkit().getImage("/Users/Matt/Programming/Personal Projects/synthCOW-v2.0/synthCOW-project/src/images/bass.png");
          instrumentImages[1] = Toolkit.getDefaultToolkit().getImage("/Users/Matt/Programming/Personal Projects/synthCOW-v2.0/synthCOW-project/src/images/keyboard.png");
          instrumentImages[2] = Toolkit.getDefaultToolkit().getImage("/Users/Matt/Programming/Personal Projects/synthCOW-v2.0/synthCOW-project/src/images/strings.png");
@@ -177,7 +175,7 @@ public class MainApplet extends Applet implements ActionListener{
         //draw instrument image/handle swipes
         long curTime = System.currentTimeMillis();
         int change = listener.getSwipeNum();
-        System.out.println("curTime: "+curTime+", lastSwipeTime: "+lastSwipeTimeMillis);
+//        System.out.println("curTime: "+curTime+", lastSwipeTime: "+lastSwipeTimeMillis);
         if (curTime - lastSwipeTimeMillis >= 1500){
             if (change == -1){
                 listener.getGh().changeInstrument(false);
